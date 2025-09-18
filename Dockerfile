@@ -91,7 +91,7 @@ RUN mkdir -p /root/.ssh/ \
     && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
 
 # ssh setup https://askubuntu.com/questions/1110828/ssh-failed-to-start-missing-privilege-separation-directory-var-run-sshd
-RUN mkdir /var/run/sshd \
+RUN mkdir -p /var/run/sshd \
     && chmod 0755 /var/run/sshd
 
 # Create folder to simulate the projects used in Marenostrum and for the tests

@@ -108,37 +108,53 @@ RUN apt-get update && \
 # - binaries
 COPY --from=build /usr/bin/sacct /usr/bin/sacct
 COPY --from=build /usr/bin/sacctmgr /usr/bin/sacctmgr
-COPY --from=build /usr/bin/sattach /usr/bin/sattach
+# COPY --from=build /usr/bin/sattach /usr/bin/sattach
 COPY --from=build /usr/bin/salloc /usr/bin/salloc
 COPY --from=build /usr/bin/sbatch /usr/bin/sbatch
 COPY --from=build /usr/bin/scancel /usr/bin/scancel
-COPY --from=build /usr/bin/sbcast /usr/bin/sbcast
-COPY --from=build /usr/bin/scrontab /usr/bin/scrontab
-COPY --from=build /usr/bin/scontrol /usr/bin/scontrol
-COPY --from=build /usr/bin/sdiag /usr/bin/sdiag
+# COPY --from=build /usr/bin/sbcast /usr/bin/sbcast
+# COPY --from=build /usr/bin/scrontab /usr/bin/scrontab
+# COPY --from=build /usr/bin/scontrol /usr/bin/scontrol
+# COPY --from=build /usr/bin/sdiag /usr/bin/sdiag
 COPY --from=build /usr/bin/sinfo /usr/bin/sinfo
-COPY --from=build /usr/bin/sprio /usr/bin/sprio
+# COPY --from=build /usr/bin/sprio /usr/bin/sprio
 COPY --from=build /usr/bin/squeue /usr/bin/squeue
-COPY --from=build /usr/bin/sreport /usr/bin/sreport
-COPY --from=build /usr/bin/sshare /usr/bin/sshare
+# COPY --from=build /usr/bin/sreport /usr/bin/sreport
+# COPY --from=build /usr/bin/sshare /usr/bin/sshare
 COPY --from=build /usr/bin/srun /usr/bin/srun
-COPY --from=build /usr/bin/sstat /usr/bin/sstat
-COPY --from=build /usr/bin/strigger /usr/bin/strigger
-COPY --from=build /usr/bin/sview /usr/bin/sview
+# COPY --from=build /usr/bin/sstat /usr/bin/sstat
+# COPY --from=build /usr/bin/strigger /usr/bin/strigger
+# COPY --from=build /usr/bin/sview /usr/bin/sview
 # more binaries
 COPY --from=build /usr/sbin/slurmctld /usr/sbin/slurmctld
 COPY --from=build /usr/sbin/slurmd /usr/sbin/slurmd
 COPY --from=build /usr/sbin/slurmstepd /usr/sbin/slurmstepd
 COPY --from=build /usr/sbin/slurmdbd /usr/sbin/slurmdbd
 # - include headers
-COPY --from=build /usr/include/slurm /usr/include/slurm
+# COPY --from=build /usr/include/slurm /usr/include/slurm
 # - libraries
-COPY --from=build /usr/lib64/libslurm.so.43.0.0 /usr/lib64/libslurm.so.43.0.0
-COPY --from=build /usr/lib64/libslurm.so.43 /usr/lib64/libslurm.so.43
-COPY --from=build /usr/lib64/libslurm.so /usr/lib64/libslurm.so
-COPY --from=build /usr/lib64/libslurm.la /usr/lib64/libslurm.la
-COPY --from=build /usr/lib64/libslurm.a /usr/lib64/libslurm.a
-COPY --from=build /usr/lib64/slurm /usr/lib64/slurm
+#COPY --from=build /usr/lib64/libslurm.so.43.0.0 /usr/lib64/libslurm.so.43.0.0
+#COPY --from=build /usr/lib64/libslurm.so.43 /usr/lib64/libslurm.so.43
+#COPY --from=build /usr/lib64/libslurm.so /usr/lib64/libslurm.so
+COPY --from=build /usr/lib64/slurm/libslurmfull.so /usr/lib64/slurm/libslurmfull.so
+COPY --from=build /usr/lib64/slurm/auth_none.so /usr/lib64/slurm/auth_none.so
+COPY --from=build /usr/lib64/slurm/hash_k12.so /usr/lib64/slurm/hash_k12.so
+COPY --from=build /usr/lib64/slurm/tls_none.so /usr/lib64/slurm/tls_none.so
+COPY --from=build /usr/lib64/slurm/cred_none.so /usr/lib64/slurm/cred_none.so
+COPY --from=build /usr/lib64/slurm/select_cons_tres.so /usr/lib64/slurm/select_cons_tres.so
+COPY --from=build /usr/lib64/slurm/jobacct_gather_linux.so /usr/lib64/slurm/jobacct_gather_linux.so
+COPY --from=build /usr/lib64/slurm/prep_script.so /usr/lib64/slurm/prep_script.so
+COPY --from=build /usr/lib64/slurm/mpi_pmi2.so /usr/lib64/slurm/mpi_pmi2.so
+COPY --from=build /usr/lib64/slurm/accounting_storage_slurmdbd.so /usr/lib64/slurm/accounting_storage_slurmdbd.so
+COPY --from=build /usr/lib64/slurm/certgen_script.so /usr/lib64/slurm/certgen_script.so
+COPY --from=build /usr/lib64/slurm/proctrack_linuxproc.so /usr/lib64/slurm/proctrack_linuxproc.so
+COPY --from=build /usr/lib64/slurm/topology_flat.so /usr/lib64/slurm/topology_flat.so
+COPY --from=build /usr/lib64/slurm/accounting_storage_ctld_relay.so /usr/lib64/slurm/accounting_storage_ctld_relay.so
+COPY --from=build /usr/lib64/slurm/accounting_storage_mysql.so /usr/lib64/slurm/accounting_storage_mysql.so
+COPY --from=build /usr/lib64/slurm/priority_basic.so /usr/lib64/slurm/priority_basic.so
+COPY --from=build /usr/lib64/slurm/jobcomp_filetxt.so /usr/lib64/slurm/jobcomp_filetxt.so
+COPY --from=build /usr/lib64/slurm/sched_builtin.so /usr/lib64/slurm/sched_builtin.so
+COPY --from=build /usr/lib64/slurm/gpu_generic.so /usr/lib64/slurm/gpu_generic.so
 
 RUN mkdir -p /etc/sysconfig/slurm \
         /var/spool/slurmd \
@@ -155,7 +171,8 @@ RUN mkdir -p /etc/sysconfig/slurm \
         /var/lib/slurmd/assoc_mgr_state \
         /var/lib/slurmd/assoc_usage \
         /var/lib/slurmd/qos_usage \
-        /var/lib/slurmd/fed_mgr_state
+        /var/lib/slurmd/fed_mgr_state \
+        /var/spool/slurmd/cred_state
 
 RUN ssh-keygen -q -t rsa -N '' -f /root/.ssh/container_root_pubkey
 

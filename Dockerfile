@@ -88,7 +88,7 @@ ENV USERNAME=root
 # plots...).
 
 RUN apt-get update && \
-    apt-get --no-install-recommends -y install make \
+    apt-get --no-install-recommends -y install \
         bash \
         ca-certificates \
         less \

@@ -97,7 +97,8 @@ RUN apt-get update && \
         openssh-server \
         python3 \
         tini \
-        vim && \
+        vim \
+        xz-utils && \
     update-ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*

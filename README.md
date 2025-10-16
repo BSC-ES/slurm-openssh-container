@@ -3,6 +3,8 @@
 **Slurm Docker Cluster with OpenSSH** is a single-container Slurm cluster designed for 
 CI/CD testing of tools which interface with Slurm. 
 
+This image also includes `xz-utils` to test compression on remote platforms. 
+
 ## Getting Started
 
 To get up and running with Slurm in Docker, make sure you have the following tools installed:
